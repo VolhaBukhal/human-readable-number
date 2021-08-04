@@ -3,6 +3,7 @@ module.exports = function toReadable (number) {
      'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen','seventeen', 'eighteen', 'nineteen'];
     
     const dozens = [ {2: 'twenty'}, {3: 'thirty'}, {4: 'forty'}, {5: 'fifty'}, {6: 'sixty'}, {7: 'seventy'}, {8: 'eighty'}, {9: 'ninety'} ];
+    if (!number) {return 'zero'};
     
     if (number > 0 && number < 20) {
         return simpleNumber[number];
@@ -29,9 +30,9 @@ module.exports = function toReadable (number) {
         } else {                                             
             const hundreds = Math.trunc( number / 100 );
             const unitsOfhundreds = number - hundreds*100;
-            const dozenOfHundreds = toReadable (unitsOfhundreds);
-            debugger;
+            
             if (unitsOfhundreds) {
+                const dozenOfHundreds = toReadable (unitsOfhundreds);
                 return `${simpleNumber[hundreds]} hundred ${dozenOfHundreds}`;
             } else {
                 return `${simpleNumber[hundreds]} hundred` ;
